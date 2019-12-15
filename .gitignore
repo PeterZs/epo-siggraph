@@ -1,0 +1,8 @@
+build
+.eggs
+.ipynb_checkpoints
+*.vtk
+*.egg-info
+_build
+var
+*.geo
