@@ -18,6 +18,14 @@ using tetra_t = Eigen::Matrix<int64_t, Eigen::Dynamic, 4, Eigen::RowMajor>;
 using neighborhood_lists_t = std::vector<std::list<int64_t>>;
 PYBIND11_MAKE_OPAQUE(std::vector<std::list<int64_t>>);
 
+enum class State {
+  Far,
+  Trial,
+  Valid,
+  Boundary,
+  Shadow
+};
+
 struct EikonalTetraSolver {
   neighborhood_lists_t neighborhood_lists;
 
@@ -50,6 +58,14 @@ PYBIND11_MODULE(python_example, m) {
     )pbdoc";
 
   py::bind_vector<std::vector<std::list<int64_t>>>(m, "NeighborhoodLists");
+
+  py::enum_<State>(m, "State")
+    .value("Far", State::Far)
+    .value("Trial", State::Trial)
+    .value("Valid", State::Valid)
+    .value("Boundary", State::Boundary)
+    .value("Shadow", State::Shadow)
+    .export_values();
 
   py::class_<EikonalTetraSolver>(m, "EikonalTetraSolver")
     .def(py::init<Eigen::Ref<points_t>, Eigen::Ref<tetra_t>>())
