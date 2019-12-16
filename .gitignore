@@ -7,3 +7,4 @@ _build
 var
 *.geo
 .DS_Store
+dist
