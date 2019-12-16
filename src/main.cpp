@@ -19,25 +19,24 @@ using neighborhood_lists_t = std::vector<std::list<int64_t>>;
 PYBIND11_MAKE_OPAQUE(std::vector<std::list<int64_t>>);
 
 struct EikonalTetraSolver {
-	neighborhood_lists_t neighborhood_lists;
+  neighborhood_lists_t neighborhood_lists;
 
-	EikonalTetraSolver(Eigen::Ref<points_t> points, Eigen::Ref<tetra_t> tetra)
-	{
-		neighborhood_lists.resize(points.rows());
-		for (Eigen::Index t = 0; t < tetra.rows(); ++t) {
-			for (Eigen::Index j = 0; j < tetra.cols(); ++j) {
-				int64_t v = tetra(t, j);
-				auto & lst = neighborhood_lists[v];
-				if (std::find(lst.begin(), lst.end(), t) == lst.end()) {
-					lst.push_back(t);
-				}
-			}
-		}
-	}
+  EikonalTetraSolver(Eigen::Ref<points_t> points, Eigen::Ref<tetra_t> tetra) {
+    neighborhood_lists.resize(points.rows());
+    for (Eigen::Index t = 0; t < tetra.rows(); ++t) {
+      for (Eigen::Index j = 0; j < tetra.cols(); ++j) {
+        int64_t v = tetra(t, j);
+        auto & lst = neighborhood_lists[v];
+        if (std::find(lst.begin(), lst.end(), t) == lst.end()) {
+          lst.push_back(t);
+        }
+      }
+    }
+  }
 };
 
 PYBIND11_MODULE(python_example, m) {
-    m.doc() = R"pbdoc(
+  m.doc() = R"pbdoc(
         Pybind11 example plugin
         -----------------------
 
@@ -50,27 +49,27 @@ PYBIND11_MODULE(python_example, m) {
            subtract
     )pbdoc";
 
-	py::bind_vector<std::vector<std::list<int64_t>>>(m, "NeighborhoodLists");
+  py::bind_vector<std::vector<std::list<int64_t>>>(m, "NeighborhoodLists");
 
-	py::class_<EikonalTetraSolver>(m, "EikonalTetraSolver")
-		.def(py::init<Eigen::Ref<points_t>, Eigen::Ref<tetra_t>>())
-		.def_readonly("neighborhood_lists", &EikonalTetraSolver::neighborhood_lists);
+  py::class_<EikonalTetraSolver>(m, "EikonalTetraSolver")
+    .def(py::init<Eigen::Ref<points_t>, Eigen::Ref<tetra_t>>())
+    .def_readonly("neighborhood_lists", &EikonalTetraSolver::neighborhood_lists);
 
-    // m.def("add", &add, R"pbdoc(
-    //     Add two numbers
+  // m.def("add", &add, R"pbdoc(
+  //     Add two numbers
 
-    //     Some other explanation about the add function.
-    // )pbdoc");
+  //     Some other explanation about the add function.
+  // )pbdoc");
 
-    // m.def("subtract", [](int i, int j) { return i - j; }, R"pbdoc(
-    //     Subtract two numbers
+  // m.def("subtract", [](int i, int j) { return i - j; }, R"pbdoc(
+  //     Subtract two numbers
 
-    //     Some other explanation about the subtract function.
-    // )pbdoc");
+  //     Some other explanation about the subtract function.
+  // )pbdoc");
 
 #ifdef VERSION_INFO
-    m.attr("__version__") = VERSION_INFO;
+  m.attr("__version__") = VERSION_INFO;
 #else
-    m.attr("__version__") = "dev";
+  m.attr("__version__") = "dev";
 #endif
 }
