@@ -23,8 +23,8 @@ class get_pybind_include(object):
 
 ext_modules = [
     Extension(
-        'python_example',
         ['src/main.cpp'],
+        'olim',
         include_dirs=[
             '/usr/local/Cellar/eigen/3.3.7/include/eigen3',
             # Path to pybind11 headers
@@ -101,12 +101,11 @@ class BuildExt(build_ext):
         build_ext.build_extensions(self)
 
 setup(
-    name='python_example',
+    name='olim',
     version=__version__,
     author='Samuel F. Potter',
     author_email='sfp@umiacs.umd.edu',
-    url='https://github.com/pybind/python_example',
-    description='A test project using pybind11',
+    description='A module containing ordered line integral methods',
     long_description='',
     ext_modules=ext_modules,
     install_requires=['pybind11>=2.4'],
