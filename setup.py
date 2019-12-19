@@ -23,8 +23,14 @@ class get_pybind_include(object):
 
 ext_modules = [
     Extension(
-        ['src/main.cpp'],
         'olim',
+        [
+            'src/olim.cpp',
+            'src/eikonal.cpp',
+            'src/eikonal_adaptive_gauss_seidel.cpp',
+            'src/eikonal_dijkstra_like.cpp',
+            'src/tetra_mesh.cpp'
+        ],
         include_dirs=[
             '/usr/local/Cellar/eigen/3.3.7/include/eigen3',
             # Path to pybind11 headers
