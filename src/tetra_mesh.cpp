@@ -132,9 +132,9 @@ olim::TetraMesh::split_tetra(int64_t t, int64_t i) const {
 
 #if USING_PYBIND11
 void init_tetra_mesh(py::module & m) {
-  py::class_<TetraMesh>(m, "TetraMesh")
+  py::class_<olim::TetraMesh>(m, "TetraMesh")
     .def(py::init<Eigen::Ref<points_t>, Eigen::Ref<tetras_t>>())
-    .def_readonly("vt_neib", &TetraMesh::vt_neib)
-    .def_readonly("tt_neib", &TetraMesh::tt_neib);
+    .def_readonly("vt_neib", &olim::TetraMesh::vt_neib)
+    .def_readonly("tt_neib", &olim::TetraMesh::tt_neib);
 }
 #endif

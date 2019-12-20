@@ -126,24 +126,25 @@ bool olim::EikonalDijkstraLike::step() {
 
 #if USING_PYBIND11
 void init_state(py::module & m) {
-  py::enum_<State>(m, "State")
-    .value("Far", State::Far)
-    .value("Trial", State::Trial)
-    .value("Valid", State::Valid)
-    .value("Boundary", State::Boundary)
-    .value("Shadow", State::Shadow)
+  py::enum_<olim::State>(m, "State")
+    .value("Far", olim::State::Far)
+    .value("Trial", olim::State::Trial)
+    .value("Valid", olim::State::Valid)
+    .value("Boundary", olim::State::Boundary)
+    .value("Shadow", olim::State::Shadow)
     .export_values();
 }
 
 void init_eikonal_dijkstra_like(py::module & m) {
-  py::class_<EikonalDijkstraLike, Eikonal>(m, "EikonalDijkstraLike")
+  py::class_<olim::EikonalDijkstraLike, olim::Eikonal>(m, "EikonalDijkstraLike")
     .def(py::init<
            Eigen::Ref<points_t>,
            Eigen::Ref<tetras_t>,
            Eigen::Ref<slowness_t>
          >())
-    .def_readonly("states", &EikonalDijkstraLike::states)
-    .def_readonly("heap", &EikonalDijkstraLike::heap)
-    .def_readonly("modified_stencils", &EikonalDijkstraLike::modified_stencils);
+    .def_readonly("states", &olim::EikonalDijkstraLike::states)
+    .def_readonly("heap", &olim::EikonalDijkstraLike::heap)
+    .def_readonly("modified_stencils",
+                  &olim::EikonalDijkstraLike::modified_stencils);
 }
 #endif

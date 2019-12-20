@@ -95,16 +95,17 @@ bool olim::EikonalAdaptiveGaussSeidel::step() {
 
 #if USING_PYBIND11
 void init_eikonal_adaptive_gauss_seidel(py::module & m) {
-  py::class_<EikonalAdaptiveGaussSeidel, Eikonal>(m, "EikonalAdaptiveGaussSeidel")
+  py::class_<olim::EikonalAdaptiveGaussSeidel,
+             olim::Eikonal>(m, "EikonalAdaptiveGaussSeidel")
     .def(py::init<
            Eigen::Ref<points_t>,
            Eigen::Ref<tetras_t>,
            Eigen::Ref<slowness_t>,
            double
          >())
-    .def_readonly("queue", &EikonalAdaptiveGaussSeidel::queue)
-    .def_readonly("enqueued", &EikonalAdaptiveGaussSeidel::enqueued)
-    .def_readonly("boundary", &EikonalAdaptiveGaussSeidel::boundary)
-    .def_readonly("tol", &EikonalAdaptiveGaussSeidel::tol);
+    .def_readonly("queue", &olim::EikonalAdaptiveGaussSeidel::queue)
+    .def_readonly("enqueued", &olim::EikonalAdaptiveGaussSeidel::enqueued)
+    .def_readonly("boundary", &olim::EikonalAdaptiveGaussSeidel::boundary)
+    .def_readonly("tol", &olim::EikonalAdaptiveGaussSeidel::tol);
 }
 #endif

@@ -158,17 +158,17 @@ void olim::Eikonal::solve() {
 
 #if USING_PYBIND11
 void init_eikonal(py::module & m) {
-  py::class_<Eikonal>(m, "Eikonal")
-    .def("line", &Eikonal::line)
-    .def("tri", &Eikonal::tri)
-    .def("tetra", &Eikonal::tetra)
-    .def("update", &Eikonal::update)
-    .def("add_boundary_point", &Eikonal::add_boundary_point)
-    .def("commit", &Eikonal::commit)
-    .def("step", &Eikonal::step)
-    .def("solve", &Eikonal::solve)
-    .def_readonly("mesh", &Eikonal::mesh)
-    .def_readonly("stencils", &Eikonal::stencils)
-    .def_readonly("values", &Eikonal::values);
+  py::class_<olim::Eikonal>(m, "Eikonal")
+    .def("line", &olim::Eikonal::line)
+    .def("tri", &olim::Eikonal::tri)
+    .def("tetra", &olim::Eikonal::tetra)
+    .def("update", &olim::Eikonal::update)
+    .def("add_boundary_point", &olim::Eikonal::add_boundary_point)
+    .def("commit", &olim::Eikonal::commit)
+    .def("step", &olim::Eikonal::step)
+    .def("solve", &olim::Eikonal::solve)
+    .def_readonly("mesh", &olim::Eikonal::mesh)
+    .def_readonly("stencils", &olim::Eikonal::stencils)
+    .def_readonly("values", &olim::Eikonal::values);
 }
 #endif
