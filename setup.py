@@ -31,6 +31,9 @@ ext_modules = [
             'src/eikonal_dijkstra_like.cpp',
             'src/tetra_mesh.cpp'
         ],
+        define_macros=[
+            ('USING_PYBIND11', 1)
+        ],
         include_dirs=[
             '/usr/local/Cellar/eigen/3.3.7/include/eigen3',
             # Path to pybind11 headers

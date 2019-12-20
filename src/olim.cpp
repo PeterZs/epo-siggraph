@@ -1,7 +1,5 @@
 #include "pybind11_common.hpp"
 
-#define USING_PYBIND11 1
-
 #include "eikonal.hpp"
 #include "eikonal_adaptive_gauss_seidel.hpp"
 #include "eikonal_dijkstra_like.hpp"
