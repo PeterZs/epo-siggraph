@@ -15,6 +15,8 @@ olim::EikonalDijkstraLike::EikonalDijkstraLike(Eigen::Ref<points_t> points,
 }
 
 bool olim::EikonalDijkstraLike::is_causal(int64_t i, Face face) {
+  (void) i;
+  (void) face;
   throw std::runtime_error("blah");
 }
 
