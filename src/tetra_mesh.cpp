@@ -89,7 +89,7 @@ olim::Face olim::TetraMesh::get_face(int64_t t, int64_t f) const {
 olim::Face olim::TetraMesh::get_opposite_face(int64_t t, int64_t i) const {
   Face face;
   for (int64_t a = 0, b = 0, j; a < 4; ++a) {
-    if ((j = tetras(t, b)) != i) {
+    if ((j = tetras(t, a)) != i) {
       face[b++] = j;
     }
   }
