@@ -131,6 +131,12 @@ olim::TetraMesh::split_tetra(int64_t t, int64_t i) const {
 }
 
 #if USING_PYBIND11
+void init_face(py::module & m) {
+  py::class_<olim::Face>(m, "Face")
+    .def(py::init<int64_t, int64_t, int64_t>())
+    .def("__repr__", &olim::Face::to_string);
+}
+
 void init_tetra_mesh(py::module & m) {
   py::class_<olim::TetraMesh>(m, "TetraMesh")
     .def(py::init<Eigen::Ref<points_t>, Eigen::Ref<tetras_t>>())

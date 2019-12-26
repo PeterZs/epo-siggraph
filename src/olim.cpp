@@ -7,6 +7,7 @@
 void init_eikonal(py::module & m);
 void init_eikonal_adaptive_gauss_seidel(py::module & m);
 void init_eikonal_dijkstra_like(py::module & m);
+void init_face(py::module & m);
 void init_tetra_mesh(py::module & m);
 
 PYBIND11_MODULE(olim, m) {
@@ -20,6 +21,7 @@ TODO!
   init_eikonal(m);
   init_eikonal_adaptive_gauss_seidel(m);
   init_eikonal_dijkstra_like(m);
+  init_face(m);
   init_tetra_mesh(m);
 
 #ifdef VERSION_INFO
