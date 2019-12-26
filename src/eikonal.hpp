@@ -25,7 +25,7 @@ struct Eikonal
   virtual void push_back(int64_t i) = 0;
   virtual void pop_front() = 0;
   virtual opt_t<int64_t> front() const = 0;
-  virtual void add_boundary_point(int64_t i, double value) = 0;
+  virtual void add_boundary_point(int64_t i, double value = 0.0) = 0;
   virtual void commit() = 0;
   virtual bool do_line_update(int64_t i0) const = 0;
   virtual bool do_tri_update(Edge edge) const = 0;

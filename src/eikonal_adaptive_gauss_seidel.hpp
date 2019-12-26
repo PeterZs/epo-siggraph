@@ -24,7 +24,7 @@ struct EikonalAdaptiveGaussSeidel: public Eikonal
   virtual void push_back(int64_t i);
   virtual void pop_front();
   virtual opt_t<int64_t> front() const;
-  virtual void add_boundary_point(int64_t i, double value);
+  virtual void add_boundary_point(int64_t i, double value = 0.0);
   virtual void commit();
   virtual bool do_line_update(int64_t i0) const;
   virtual bool do_tri_update(Edge edge) const;
