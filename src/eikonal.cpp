@@ -168,6 +168,7 @@ void init_eikonal(py::module & m) {
     .def("step", &olim::Eikonal::step)
     .def("solve", &olim::Eikonal::solve)
     .def_readonly("mesh", &olim::Eikonal::mesh)
+    .def_readonly("slowness", &olim::Eikonal::slowness)
     .def_readonly("stencils", &olim::Eikonal::stencils)
     .def_readonly("values", &olim::Eikonal::values);
 }
