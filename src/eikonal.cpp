@@ -76,17 +76,18 @@ olim::Eikonal::tetra(int64_t i, Face face) const {
   R(1, 1) = Q.col(1).norm();
   Q.col(1).normalize();
 
-  auto x0_sq = x0.squaredNorm();
-  auto Qt_x0 = Q.transpose()*x0.transpose();
-  auto Qt_x0_sq = Qt_x0.squaredNorm();
+  double x0_sq = x0.squaredNorm();
 
-  auto Rt_inv_dU_s = R.transpose().triangularView<Eigen::Lower>().solve(dU)/s;
+  Eigen::Vector2d Qt_x0 = Q.transpose()*x0.transpose();
+  double Qt_x0_sq = Qt_x0.squaredNorm();
 
-  auto L = std::sqrt((x0_sq - Qt_x0_sq)/(1 - Rt_inv_dU_s.squaredNorm()));
-  auto lam = -R.triangularView<Eigen::Upper>().solve(Qt_x0 + L*Rt_inv_dU_s);
+  Eigen::Vector2d Rt_inv_dU_s = R.transpose().triangularView<Eigen::Lower>().solve(dU)/s;
+
+  double L = std::sqrt((x0_sq - Qt_x0_sq)/(1 - Rt_inv_dU_s.squaredNorm()));
+  Eigen::Vector2d lam = -R.triangularView<Eigen::Upper>().solve(Qt_x0 + L*Rt_inv_dU_s);
 
   s = (s_hat + s0 + (s1 - s0)*lam(0) + (s2 - s0)*lam(1))/2; // mp1 correction
-  auto u = u0 + s*x0.dot(x0 + lam(0)*dx1  + lam(1)*dx2)/L;
+  double u = u0 + s*x0.dot(x0 + lam(0)*dx1  + lam(1)*dx2)/L;
 
   return {u, lam};
 }
