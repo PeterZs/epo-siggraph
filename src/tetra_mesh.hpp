@@ -50,6 +50,12 @@ struct Face
   inline std::array<Edge, 3> get_edges() const {
     return {Edge {i0, i1}, Edge {i1, i2}, Edge {i2, i0}};
   }
+
+  inline std::string to_string() const {
+    std::stringstream ss;
+    ss << "{" << i0 << ", " << i1 << ", " << i2 << "}";
+    return ss.str();
+  }
 };
 
 struct TetraMesh
